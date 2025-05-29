@@ -1,17 +1,26 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { useTheme } from '../context/ThemeContext';
 
-const ShopScreen = () => (
-  <View style={styles.placeholderContainer}>
-    <Text>ShopScreen</Text>
-  </View>
-);
+const ShopScreen = () => {
+  const { colors } = useTheme();
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.title, { color: colors.text }]}>Ласкаво просимо до Магазину!</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-  placeholderContainer: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f4f6f6',
+    padding: 20,
+  },
+  title: {
+    fontSize: 22,
+    marginBottom: 20,
   },
 });
 
