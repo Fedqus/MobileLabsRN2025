@@ -3,6 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import HomeScreen from '../screens/HomeScreen';
+import GalleryScreen from '../screens/GalleryScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,12 +25,13 @@ const AppNavigator = () => {
         },
         tabBarActiveTintColor: '#1e90ff',
         tabBarInactiveTintColor: 'gray',
-        headerShown: false,
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabBarLabel,
       })}
     >
       <Tab.Screen name="Головна" component={HomeScreen} />
+      <Tab.Screen name="Фотогалерея" component={GalleryScreen} />
+      <Tab.Screen name="Профіль" component={ProfileScreen} />
     </Tab.Navigator>
   );
 };
