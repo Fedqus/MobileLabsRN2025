@@ -1,11 +1,12 @@
-import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as FileSystem from 'expo-file-system';
 
-const FilesScreen = () => {
+const FilesScreen = ({ navigation }) => {
   const handleOpenFileExplorer = () => {
-    
+    const initialPath = FileSystem.documentDirectory + 'AppData';
+    navigation.navigate('FileManager', { basePath: initialPath });
   };
 
   return (
@@ -72,5 +73,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 
 export default FilesScreen;

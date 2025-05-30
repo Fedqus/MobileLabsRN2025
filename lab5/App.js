@@ -1,11 +1,36 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 import HomeScreen from './screens/HomeScreen';
 import FilesScreen from './screens/FilesScreen';
+import FileManagerScreen from './screens/FileManagerScreen';
 
 const Tab = createBottomTabNavigator();
+const FilesStack = createNativeStackNavigator();
+
+function FilesStackNavigator() {
+  return (
+    <FilesStack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+      }}
+    >
+      <FilesStack.Screen
+        name="FilesMain"
+        component={FilesScreen}
+        options={{ title: 'Файли' }}
+      />
+      <FilesStack.Screen
+        name="FileManager"
+        component={FileManagerScreen}
+        // Заголовок для FileManagerScreen буде встановлюватися динамічно всередині компонента
+        // options={({ route }) => ({ title: route.params?.currentPathName || 'Файловий менеджер' })}
+      />
+    </FilesStack.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -13,13 +38,10 @@ export default function App() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
             if (route.name === 'Головна') {
-              iconName = focused ? 'home' : 'home-outline';
-              return <Ionicons name={iconName} size={size} color={color} />;
+              return <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />;
             } else if (route.name === 'Файли') {
-              iconName = 'folder';
-              return <MaterialIcons name={iconName} size={size} color={color} />;
+              return <MaterialIcons name='folder' size={size} color={color} />;
             }
           },
           tabBarActiveTintColor: '#007AFF',
@@ -33,15 +55,13 @@ export default function App() {
         <Tab.Screen
           name="Головна"
           component={HomeScreen}
-          options={{
-            title: 'Головна'
-          }}
         />
         <Tab.Screen
           name="Файли"
-          component={FilesScreen}
+          component={FilesStackNavigator}
           options={{
-            title: 'Файли'
+            title: 'Файли',
+            headerShown: false,
           }}
         />
       </Tab.Navigator>
