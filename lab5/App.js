@@ -6,6 +6,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import HomeScreen from './screens/HomeScreen';
 import FilesScreen from './screens/FilesScreen';
 import FileManagerScreen from './screens/FileManagerScreen';
+import FileViewerScreen from './screens/FileViewerScreen';
 
 const Tab = createBottomTabNavigator();
 const FilesStack = createNativeStackNavigator();
@@ -25,8 +26,10 @@ function FilesStackNavigator() {
       <FilesStack.Screen
         name="FileManager"
         component={FileManagerScreen}
-        // Заголовок для FileManagerScreen буде встановлюватися динамічно всередині компонента
-        // options={({ route }) => ({ title: route.params?.currentPathName || 'Файловий менеджер' })}
+      />
+      <FilesStack.Screen
+        name="FileViewer"
+        component={FileViewerScreen}
       />
     </FilesStack.Navigator>
   );
