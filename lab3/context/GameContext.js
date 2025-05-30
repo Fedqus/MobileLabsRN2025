@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { TASKS as initialTasks, GESTURE_TYPES } from './gameData';
+import { TASKS as initialTasks, GESTURE_TYPES } from '../constants/gameData';
 
 const GameContext = createContext();
 
